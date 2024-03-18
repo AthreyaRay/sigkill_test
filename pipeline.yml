@@ -4,7 +4,7 @@ steps:
   key: 'one'
 
 - label: ":rocket: Build"
-  command: "ech 'Building abc.sh'"
+  command: "echo 'Building abc.sh'"
   key: 'oneomne'
 
 # - label: ":danger: Terminating agents after use"
