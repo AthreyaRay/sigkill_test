@@ -6,6 +6,6 @@ steps:
 # - label: ":danger: Terminating agents after use"
 #   command: "./agentkil.sh"
 
-- label: ":rocket: Notify build passed or failed"
-  command: build.status
-  # command: "./test123.sh | buildkite-agent pipeline upload"
+notify:
+  slack: "#Support_test_account#training-and-testing"
+  if: build.state == "passed"
