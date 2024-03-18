@@ -7,5 +7,5 @@ steps:
 #   command: "./agentkil.sh"
 
 notify:
-  slack: "#Support_test_account#training-and-testing"
+- slack: "#Support_test_account#training-and-testing"
   if: build.state == "passed"
