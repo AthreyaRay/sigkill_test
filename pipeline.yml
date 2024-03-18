@@ -5,7 +5,6 @@ steps:
 
 # - label: ":danger: Terminating agents after use"
 #   command: "./agentkil.sh"
-notify:
 
 - label: ":rocket: Notify build passed or failed"
   command: "./test123.sh | buildkite-agent pipeline upload"
