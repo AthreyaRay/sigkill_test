@@ -9,5 +9,5 @@ steps:
 notify:
 - slack:
     channels:
-    - "#Support_test_account#training-and-testing"
+    - "Support_test_account#training-and-testing"
     message: "Hello I'm a custom success message"
