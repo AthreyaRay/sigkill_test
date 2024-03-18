@@ -2,7 +2,7 @@
 set -eo pipefail
 set -x
 
-step_result=$(build.state)
+step_result=$(BUILDKITE_BUILD_STATUS)
 
 if [ "$step_result" = "passed" ]; then
     cat <<YAML
