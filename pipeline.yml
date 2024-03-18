@@ -7,5 +7,5 @@ steps:
 #   command: "./agentkil.sh"
 
 - label: ":rocket: Notify build passed or failed"
-  command: BUILDKITE_BUILD_STATUS
+  command: $BUILDKITE_BUILD_IDBUILDKITE_BUILD_STATUS
   # command: "./test123.sh | buildkite-agent pipeline upload"
