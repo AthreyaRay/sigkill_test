@@ -9,10 +9,10 @@ if [ "$step_result" = "passed" ]; then
 steps:
   - command: "echo 'Step has passed'"
 notify:
-  - slack:
-      channels:
-        - "Support_test_account#training-and-testing"
-      message: "Hello I'm a custom success message"
+  - slack: "Support_test_account#training-and-testing"
+    #   channels:
+    #     - "Support_test_account#training-and-testing"
+    #   message: "Hello I'm a custom success message"
 
 YAML
 else
@@ -20,10 +20,10 @@ else
 steps:
   - command: "echo 'It failed'"
 notify:
-  - slack:
-      channels:
-        - "Support_test_account#training-and-testing"
-      message: "Hello I'm a custom failed message"
+  - slack: "Support_test_account#training-and-testing"
+    #   channels:
+    #     - "Support_test_account#training-and-testing"
+    #   message: "Hello I'm a custom failed message"
 
 YAML
 fi
