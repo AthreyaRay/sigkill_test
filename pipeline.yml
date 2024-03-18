@@ -1,0 +1,7 @@
+steps:
+- label: ":rocket: Build"
+  command: "echo 'Building abc.sh'"
+  key: 'one'
+
+- label: ":danger: Terminating agents after use"
+  command: "./agentkil.sh"
