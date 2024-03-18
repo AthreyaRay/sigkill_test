@@ -6,9 +6,11 @@ steps:
 # - label: ":danger: Terminating agents after use"
 #   command: "./agentkil.sh"
 notify:
-- slack: "Support_test_account#training-and-testing"
-  message: "Hello I'm a custom success message"
+- slack:
+    channels: -"Support_test_account#training-and-testing"
+    message: "Hello I'm a custom success message"
   if: build.state == "passed"
-- slack: "Support_test_account#training-and-testing"
-  message: "Hello I'm a custom failed message"
+- slack:
+    channels: -"Support_test_account#training-and-testing"
+    message: "Hello I'm a custom failed message"
   if: build.state == "failed"
