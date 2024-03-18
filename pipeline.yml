@@ -11,4 +11,3 @@ notify:
     channels:
     - "#Support_test_account#training-and-testing"
     message: "Hello I'm a custom success message"
-  if: build.state == "passed"
