@@ -7,5 +7,8 @@ steps:
 #   command: "./agentkil.sh"
 
 notify:
-- slack: "#Support_test_account#training-and-testing"
+- slack:
+    channels:
+    - "#Support_test_account#training-and-testing"
+    message: "Hello I'm a custom success message"
   if: build.state == "passed"
