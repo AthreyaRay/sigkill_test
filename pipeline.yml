@@ -9,13 +9,17 @@ steps:
 
   key: 'oneomne'
 
+- block: ":rocket: Are we ready?"
+  if: build.env("$$BUILDKITE_COMMAND_EXIT_STATUS") != 0
 
-notify:
-- if: build.env("$$BUILDKITE_COMMAND_EXIT_STATUS") != 0
-  slack:
-    channels:
-    - "Support_test_account#training-and-testing"
-    message: "this is notification due to message condition meet"
+
+
+# notify:
+# - if: build.env("$$BUILDKITE_COMMAND_EXIT_STATUS") != 0
+#   slack:
+#     channels:
+#     - "Support_test_account#training-and-testing"
+#     message: "this is notification due to message condition meet"
 
 
 
