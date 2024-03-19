@@ -6,7 +6,7 @@ steps:
 
 - label: ":rocket: Build"
   command: echo "Building"
-  key: 'oneomne'
+  key: 'oneomnee'
 
 # - label: ":danger: Terminating agents after use"
 #   command: "./agentkil.sh"
