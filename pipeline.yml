@@ -6,11 +6,13 @@ steps:
 
 - label: ":rocket: Build"
   command: echo "Building"
-  key: 'oneomnee'
+  key: 'oneomne'
 
 # - label: ":danger: Terminating agents after use"
 #   command: "./agentkil.sh"
 
+notify:
+  -slack: "#slack_notification_test"
 
 # - slack:
 #     channels:
