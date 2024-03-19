@@ -10,7 +10,7 @@ steps:
 
 
 - block: ":rocket: Are we ready?"
-  if: build.env("$$BUILDKITE_COMMAND_EXIT_STATUS") != ' '
+  if: build.env("$$BUILDKITE_COMMAND_EXIT_STATUS") != 'string'
 
 
 
