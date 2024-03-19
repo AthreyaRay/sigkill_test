@@ -10,7 +10,7 @@ steps:
 
 
 - block: ":rocket: Are we ready?"
-  # if: build.env("$$BUILDKITE_ORGANIZATION_SLUG") != 'string'
+  if: build.env("$$BUILDKITE_ORGANIZATION_SLUG") == 'personal-use-4'
 
 
 
