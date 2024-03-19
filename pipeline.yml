@@ -14,9 +14,9 @@ notify:
 # - label: ":danger: Terminating agents after use"
 #   command: "./agentkil.sh"
 
-notify:
+# notify:
 
-  -slack: "buildkite#slack_notification_test"
+#   -slack: "buildkite#slack_notification_test"
 
 # - slack:
 #     channels:
