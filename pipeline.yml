@@ -17,7 +17,7 @@ notify:
     - "Support_test_account#training-and-testing"
     message: "this is notification due to condition meet"
 
-# notify::::
+# notify:::::::
 # # Notifying to support_test_account workspace and channek training-and-testing in that workspace
 # - slack: "Support_test_account#training-and-testing"
 
