@@ -8,6 +8,9 @@ steps:
   command: echo "Building"
   key: 'oneomne'
 
+notify:
+- slack: "buildkite#slack_notification_test"
+
 # - label: ":danger: Terminating agents after use"
 #   command: "./agentkil.sh"
 
