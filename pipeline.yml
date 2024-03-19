@@ -12,7 +12,8 @@ steps:
 #   command: "./agentkil.sh"
 
 notify:
-  -slack: "#slack_notification_test"
+
+  -slack: "buildkite#slack_notification_test"
 
 # - slack:
 #     channels:
