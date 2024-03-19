@@ -9,8 +9,14 @@ steps:
   key: 'oneomne'
 
 
-- block: ":rocket: Are we ready?"
-  if: build.env("$$BUILDKITE_COMMAND_EXIT_STATUS") != 'personal-use-5'
+- label: ":cow: buildkite exit status check"
+  command: |
+    if [ $$(BUILDKITE_COMMAND_EXIT_STATUS) != 0]; then
+      cat <<< YAML |buildkite-agent pipleline uplaod
+      steps:
+      - block: ":rocket: Are we ready?"
+
+
 
 
 

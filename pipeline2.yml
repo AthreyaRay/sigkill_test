@@ -1,0 +1,14 @@
+steps:
+- label: ":rocket: Build"
+  command: |
+    echo "Building"
+  key: 'one'
+
+- label: ":rocket: Build"
+  command: echo "Building"
+
+  key: 'oneomne'
+
+- label: ":cow: checking exit status"
+  command: |
+    if []
