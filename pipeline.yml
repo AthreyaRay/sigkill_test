@@ -1,21 +1,18 @@
 steps:
 - label: ":rocket: Build"
-  command: |
-    echo "Building"
+  command: "echo 'Building'"
   key: 'one'
 
 - label: ":rocket: Build"
-  command: echo "$$BUILDKITE_ORGANIZATION_SLUG"
-  key: 'oneomne'
+  command: "echo \"$$BUILDKITE_ORGANIZATION_SLUG\""
+  key: 'two' # The key must be unique, so I've changed it from 'oneomne' to 'two'.
 
-
-- label: ":cow: buildkite exit status check"
+- label: ":cow: Buildkite exit status check"
   command: |
-    if [ $$(BUILDKITE_COMMAND_EXIT_STATUS) != 0]; then
-      cat <<< YAML |buildkite-agent pipleline uplaod
+    if [ "$$BUILDKITE_COMMAND_EXIT_STATUS" != "0" ]; then
+      cat <<YAML | buildkite-agent pipeline upload
       steps:
-      - block: ":rocket: Are we ready?"
-
+        - block: ":rocket: Are we ready?"
       YAML
     fi
 
