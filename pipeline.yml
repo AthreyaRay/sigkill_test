@@ -8,7 +8,7 @@ steps:
   key: 'two'
 
 
-- label: "List all environment variables"
+- label: "List all environment variables in the job"
   command: "env"
 
 # - label: ":cow: Buildkite exit status check"
