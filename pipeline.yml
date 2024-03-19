@@ -11,7 +11,7 @@ steps:
 
 
 notify:
-- if: build.branch == 'main' || build.message =~ /deploy/
+- if: build.branch == 'master' || build.message =~ /deploy/
   slack:
     channels:
     - "Support_test_account#training-and-testing"
