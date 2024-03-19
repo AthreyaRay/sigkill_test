@@ -11,11 +11,21 @@ steps:
 
 
 notify:
-- if: build.branch == pipeline.default_branch || build.message =~ /deploy/
+- if: build.env("BUILDKITE_COMMAND_EXIT_STATUS") == '0'
   slack:
     channels:
     - "Support_test_account#training-and-testing"
-    message: "this is notification due to $build.message condition meet"
+    message: "this is notification due to message condition meet"
+
+
+
+
+# notify:
+# - if: build.branch == pipeline.default_branch || build.message =~ /deploy/
+#   slack:
+#     channels:
+#     - "Support_test_account#training-and-testing"
+#     message: "this is notification due to message condition meet"
 
 # notify:::::::
 # # Notifying to support_test_account workspace and channek training-and-testing in that workspace
