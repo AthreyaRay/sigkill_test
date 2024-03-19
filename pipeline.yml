@@ -5,12 +5,12 @@ steps:
   key: 'one'
 
 - label: ":rocket: Build"
-  command: exit -1
-
+  command: echo "Building"
   key: 'oneomne'
 
+
 - block: ":rocket: Are we ready?"
-  # if: build.env("$$BUILDKITE_COMMAND_EXIT_STATUS") != '0'
+  if: build.env("$$BUILDKITE_COMMAND_EXIT_STATUS") == '0'
 
 
 
