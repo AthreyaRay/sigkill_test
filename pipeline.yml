@@ -6,11 +6,20 @@ steps:
 
 - label: ":rocket: Build"
   command: echo "Building"
+
   key: 'oneomne'
 
+
 notify:
-# Notifying to support_test_account workspace and channek training-and-testing in that workspace
-- slack: "Support_test_account#training-and-testing"
+- if: build.branch == 'master' || build.message =~ /deploy/
+  slack:
+    channels:
+    - "Support_test_account#training-and-testing"
+    message: "this is notification due to condition meet"
+
+# notify:
+# # Notifying to support_test_account workspace and channek training-and-testing in that workspace
+# - slack: "Support_test_account#training-and-testing"
 
 # - label: ":danger: Terminating agents after usee"""""
 #   command: "./agentkil.sh"
