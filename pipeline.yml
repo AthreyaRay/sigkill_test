@@ -12,13 +12,13 @@ steps:
 #   command: "./agentkil.sh"
 
 
-- slack:
-    channels:
-    - "Support_test_account#training-and-testing"
-    message: "Hello I'm a custom success message"
-  if: build.state == "passed"
-- slack:
-    channels:
-    - "Support_test_account#training-and-testing"
-    message: "Hello I'm a custom failed message"
-  if: build.state == "failed"
+# - slack:
+#     channels:
+#     - "Support_test_account#training-and-testing"
+#     message: "Hello I'm a custom success message"
+#   if: build.state == "passed"
+# - slack:
+#     channels:
+#     - "Support_test_account#training-and-testing"
+#     message: "Hello I'm a custom failed message"
+#   if: build.state == "failed"
