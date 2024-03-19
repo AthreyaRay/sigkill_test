@@ -5,13 +5,13 @@ steps:
   key: 'one'
 
 - label: ":rocket: Build"
-  command: echo "Building"
+  command: exit -1
 
   key: 'oneomne'
 
 
 notify:
-- if: build.env("$$BUILDKITE_COMMAND_EXIT_STATUS") == '0'
+- if: build.env("$$BUILDKITE_COMMAND_EXIT_STATUS") != '0'
   slack:
     channels:
     - "Support_test_account#training-and-testing"
