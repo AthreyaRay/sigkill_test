@@ -10,7 +10,7 @@ steps:
 
 - label: "List all environment variables in the job"
   command: |
-    "echo 'job id is $BUILDKITE_JOB_ID  and build id is $BUILDKITE_BUILD_ID'" | tee build.log |grep 'job'
+    echo "job id is $BUILDKITE_JOB_ID  and build id is $BUILDKITE_BUILD_ID" | tee build.log |grep 'job'
 
   artifact_paths: "build.log"
 
