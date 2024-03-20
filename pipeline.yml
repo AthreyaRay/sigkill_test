@@ -9,7 +9,9 @@ steps:
 
 
 - label: "List all environment variables in the job"
-  command: "env"
+  command: |
+    "echo 'job id is $BUILDKITE_JOB_ID  and build id is $BUILDKITE_BUILD_ID'"
+    "env"
 
 # - label: ":cow: Buildkite exit status check"
 #   command: |
