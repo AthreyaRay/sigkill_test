@@ -8,6 +8,10 @@ steps:
   key: 'two'
   if: build.message !~ /skip tests/
 
+- label: ":rocket: Build"
+  command: ping www.google.com
+  key: 'three'
+
 
 - label: "List all environment variables in the job"
   command: |
