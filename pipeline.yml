@@ -40,7 +40,7 @@ steps:
 
 
 # notify:
-# - if: build.branch == pipeline.default_branch || build.message =~ /deploy/ #########
+# - if: build.branch == pipeline.default_branch || build.message =~ /deploy/ ######### ####
 #   slack:
 #     channels:
 #     - "Support_test_account#training-and-testing"
