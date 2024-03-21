@@ -49,7 +49,7 @@ steps:
 # notify:::::::
 # # Notifying to support_test_account workspace and channek training-and-testing in that workspace
 # - slack: "Support_test_account#training-and-testing"
-
+#############
 # - label: ":danger: Terminating agents after usee"""""
 #   command: "./agentkil.sh"
 
