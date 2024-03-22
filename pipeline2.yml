@@ -2,6 +2,8 @@ steps:
 - label: ":rocket: Build"
   command: "echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID'"
   key: 'one'
+  agents:
+  - "my_agent"
 
 - label: ":rocket: Build"
   command: "echo \"Organization slug is $BUILDKITE_ORGANIZATION_SLUG\""
