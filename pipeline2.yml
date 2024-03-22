@@ -10,8 +10,8 @@ steps:
   command: "echo \"Organization slug is $BUILDKITE_ORGANIZATION_SLUG\""
   key: 'two'
   agents:
-    docker: "true"
-    queue: default-queue
+    check: "1.2.3"
+    queue: test_queue
 
 
 notify:
