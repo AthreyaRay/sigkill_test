@@ -6,7 +6,7 @@ steps:
   command: "echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID'"
   key: 'one'
   agents:
-    check: $$MY_FIXTURE
+    check: "$MY_FIXTURE"
     queue: test_queue
 
 - label: ":rocket: Build"
