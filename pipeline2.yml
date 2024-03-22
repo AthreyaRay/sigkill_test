@@ -14,8 +14,8 @@ steps:
         steps:
         - label: "Example Script"
             command: echo "script.sh"
-            notify:
-              - github_commit_status:
-                  context: "my-custom-status"
+            # notify:
+            #   - github_commit_status:
+            #       context: "my-custom-status"
       YAML  # Heredoc ends here, ensure no extra characters before YAML
     fi  # `fi` closes the if statement:
