@@ -19,7 +19,8 @@ steps:
             - github_commit_status:
                 context: "my-custom-status-2-failed"
       YAML
-    fi
+    fi  # Add fi to close the if statement
+
 
 # - label: "List all environment variables in the job"
 #   command: "env | tee builder.log | grep 'BUILDKITE'"
