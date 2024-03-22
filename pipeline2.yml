@@ -9,6 +9,9 @@ steps:
 - label: ":rocket: Build"
   command: "echo \"Organization slug is $BUILDKITE_ORGANIZATION_SLUG\""
   key: 'two'
+  agents:
+    wanted: "true"
+    queue: default-queue
 
 
 notify:
