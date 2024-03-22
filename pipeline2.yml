@@ -8,8 +8,9 @@ steps:
   key: 'two'
 
 
-- notify:
-    -slack: "Buildkite#slack_notification_test"
+notify:
+  -slack: "Buildkite#slack_notification_test"
+
 
 
 
