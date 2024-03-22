@@ -5,12 +5,10 @@ steps:
 
 - label: ":rocket: Build"
   command: "echo \"$$BUILDKITE_ORGANIZATION_SLUG\""
-  key: 'two'
-  if: build.message !~ /skip tests/
+  notify:
+  - github_commit_status:
+      context: "my-custom-status"
 
-- label: ":rocket: Build"
-  command: ping www.google.com
-  key: 'three'
 
 
 - label: "List all environment variables in the job"
