@@ -7,11 +7,11 @@ steps:
   command: "echo \"Organization slug is $BUILDKITE_ORGANIZATION_SLUG\""
   key: 'two'
 
-- wait
 
-- command: |
+- label: ":cow: dynamic pipeline"
+  command: |
     if [ "$(buildkite-agent step get "outcome" --step "two")" == "failed" ]; then
-      cat <<-YAML | buildkite-agent pipeline upload
+      cat << 'YAML' | buildkite-agent pipeline upload
       steps:
         - label: "Notify slack about soft failed step"
           command: echo 'Notifying slack about the soft_failed step'
