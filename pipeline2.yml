@@ -9,7 +9,7 @@ steps:
 
 - label: ":cow: dynamic pipeline"
   command: |
-    if [ "$(buildkite-agent step get "outcome" --step "two")" == "passed" ]; then
+    if [ "$(buildkite-agent step get "outcome" --step "two")" != "passed" ]; then
       cat <<- YAML | buildkite-agent pipeline upload
       steps:
         - label: "Example Script"
