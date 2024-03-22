@@ -4,6 +4,7 @@ steps:
   key: 'one'
   agents:
   - "my_agent"
+  - queue = "default-queue"
 
 - label: ":rocket: Build"
   command: "echo \"Organization slug is $BUILDKITE_ORGANIZATION_SLUG\""
