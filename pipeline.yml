@@ -2,12 +2,16 @@ steps:
 - label: ":rocket: Build"
   command: "echo 'job id is $BUILDKITE_JOB_ID  and build id is $BUILDKITE_BUILD_ID'"
   key: 'one'
+  notify:
+  - github_commit_status:
+      context: "my-custom-status 1 Passed"
+
 
 - label: ":rocket: Build"
   command: "echo \"$$BUILDKITE_ORGANIZATION_SLUG\""
   notify:
   - github_commit_status:
-      context: "my-custom-status"
+      context: "my-custom-status 2 passed"
 
 
 
