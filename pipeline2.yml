@@ -3,8 +3,8 @@ steps:
   command: "echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID'"
   key: 'one'
   agents:
-  - my_agent
-  - queue=default-queue
+    wanted: "true"
+    queue: default-queue
 
 - label: ":rocket: Build"
   command: "echo \"Organization slug is $BUILDKITE_ORGANIZATION_SLUG\""
