@@ -12,7 +12,7 @@ notify:
 - slack:
     channels:
     - "#training-and-testing"
-    message: "This message will trigger notification to @athreya"
+    message: "This message will trigger notification to Athreya <@athreya>!"
 
 ###
 
