@@ -3,10 +3,10 @@ env: MY_FIXTURE = "1.2.3"
 
 steps:
 - label: ":rocket: Build"
-  command: "echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID'"
+  command: "echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and $MY_FIXTURE'"
   key: 'one'
   agents:
-    check: echo "$MY_FIXTURE"
+    check: '1.2.3'
     queue: test_queue
 
 - label: ":rocket: Build"
