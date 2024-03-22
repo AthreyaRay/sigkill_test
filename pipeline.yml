@@ -1,38 +1,30 @@
 steps:
 - label: ":rocket: Build"
-  command: "echo 'job id is $BUILDKITE_JOB_ID  and build id is $BUILDKITE_BUILD_ID'"
+  command: "echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID'"
   key: 'one'
 
-
-
 - label: ":rocket: Build"
-  command: ech \"$$BUILDKITE_ORGANIZATION_SLUG\"
-  key : 'two'
+  command: "echo \"Organization slug is $BUILDKITE_ORGANIZATION_SLUG\""
+  key: 'two'
 
-- wait: ~
+- wait
 
 - command: |
-       if [ $(buildkite-agent step get "outcome" --step "two") == "failed" ]; then
-         cat <<- YAML | buildkite-agent pipeline upload 
-         steps:
-           - label: "Notify slack about soft failed step"
-             command: echo "Notifying slack about the soft_failed step"
-             notify:
-               - github_commit_status:
-                   context: "my-custom-status 2 failed"
-                    
+    if [ "$(buildkite-agent step get "outcome" --step "two")" == "failed" ]; then
+      cat <<-YAML | buildkite-agent pipeline upload
+      steps:
+        - label: "Notify slack about soft failed step"
+          command: "echo 'Notifying slack about the soft_failed step'"
+          notify:
+            - github_commit_status:
+                context: "my-custom-status-2-failed"
       YAML
-      fi
-
-
-
-
+    fi
 
 - label: "List all environment variables in the job"
-  command: |
-    echo "job id is $BUILDKITE_JOB_ID  and build id is $BUILDKITE_BUILD_ID" | tee builder.log |grep 'is'
-
+  command: "env | tee builder.log | grep 'BUILDKITE'"
   artifact_paths: "builder.log"
+
 
 
 # - label: ":cow: Buildkite exit status check" ################################### ###### ###### ##### ###### ###### ###### ######## ######### ####
