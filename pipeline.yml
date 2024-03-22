@@ -10,7 +10,7 @@ steps:
   notify:
   - github_commit_status:
       context: "my-custom-status 2 passed"
-    if: build.state == "passed"
+      # if: build.state == "passed"
 
 
 
