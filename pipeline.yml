@@ -11,14 +11,14 @@ steps:
 
 - command: |
     if [ "$(buildkite-agent step get "outcome" --step "two")" == "failed" ]; then
-      cat <<-YAML | buildkite-agent pipeline upload
+      cat <<-EOF | buildkite-agent pipeline upload
       steps:
         - label: "Notify slack about soft failed step"
           command: "echo 'Notifying slack about the soft_failed step'"
           notify:
             - github_commit_status:
                 context: "my-custom-status-2-failed"
-      YAML
+      EOF
     fi
 
 - label: "List all environment variables in the job"
