@@ -11,7 +11,7 @@ steps:
 notify:
 - slack:
     channels:
-    - "#slack_notification_test"
+    - "#training-and-testing"
     message: "This message will trigger notification to @athreya"
 
 ###
