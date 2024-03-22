@@ -1,6 +1,6 @@
 
 env:
-- MY_FIXTURE = "1.2.3"
+  MY_FIXTURE: "1.2.3"
 
 steps:
 - label: ":rocket: Build"
