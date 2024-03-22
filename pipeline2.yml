@@ -4,12 +4,12 @@ steps:
   key: 'one'
 
 - label: ":rocket: Build"
-  command: "echo \"Organization slug is $BUILDKITE_ORGANIZATION_SLUG\""
+  command: "ech \"Organization slug is $BUILDKITE_ORGANIZATION_SLUG\""
   key: 'two'
 
 - label: ":cow: dynamic pipeline"
   command: |
-    if [ "$(buildkite-agent step get "outcome" --step "two")" != "passed" ]; then
+    if [ "$(buildkite-agent step get "outcome" --step "two")" == "soft_failed" ]; then
       cat <<- YAML | buildkite-agent pipeline upload
       steps:
         - label: "Example Script"
