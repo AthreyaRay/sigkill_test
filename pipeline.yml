@@ -21,9 +21,9 @@ steps:
       YAML
     fi
 
-- label: "List all environment variables in the job"
-  command: "env | tee builder.log | grep 'BUILDKITE'"
-  artifact_paths: "builder.log"
+# - label: "List all environment variables in the job"
+#   command: "env | tee builder.log | grep 'BUILDKITE'"
+#   artifact_paths: "builder.log"
 
 
 
