@@ -16,6 +16,6 @@ steps:
           command: "echo script.sh"
           notify:
             - github_commit_status:
-                context: "my-custom-status"
+                context: "my-custom-status for this build is failed"
     YAML
     fi
