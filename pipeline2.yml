@@ -9,7 +9,11 @@ steps:
 
 
 notify:
-- slack: "Buildkite#slack_notification_test"
+- slack:
+    channels:
+    - "#Buildkite"
+    message: "This message will trigger notification to @athreya"
+
 ###
 
 
