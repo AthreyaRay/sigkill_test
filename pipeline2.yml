@@ -1,21 +1,21 @@
 steps:
-- label: ":rocket: Build"
-  command: "echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID'"
-  key: 'one'
+  - label: ":rocket: Build"
+    command: "echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID'"
+    key: 'one'
 
-- label: ":rocket: Build"
-  command: "echo \"Organization slug is $BUILDKITE_ORGANIZATION_SLUG\""
-  key: 'two'
+  - label: ":rocket: Build"
+    command: "echo \"Organization slug is $BUILDKITE_ORGANIZATION_SLUG\""
+    key: 'two'
 
-- label: ":cow: dynamic pipeline"
-  command: |
-    if [ "$(buildkite-agent step get "outcome" --step "two")" == "passed" ]; then
-      cat << 'YAML' | buildkite-agent pipeline upload  # Heredoc starts here
-        steps:
-        - label: "Example Script"
-            command: echo "script.sh"
-            # notify:
-            #   - github_commit_status:
-            #       context: "my-custom-status"
-      YAML  # Heredoc ends here, ensure no extra characters before YAML
-    fi  # `fi` closes the if statement:
+  - label: ":cow: dynamic pipeline"
+    command: |
+      if [ "$(buildkite-agent step get "outcome" --step "two")" == "passed" ]; then
+        cat << 'YAML' | buildkite-agent pipeline upload
+steps:
+  - label: "Example Script"
+    command: "echo script.sh"
+    notify:
+      - github_commit_status:
+          context: "my-custom-status"
+YAML
+      fi
