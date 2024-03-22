@@ -3,14 +3,14 @@ steps:
   command: "echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID'"
   key: 'one'
   agents:
-    wanted: "true"
-    queue: default-queue
+    check: "1.2.3"
+    queue: test_queue
 
 - label: ":rocket: Build"
   command: "echo \"Organization slug is $BUILDKITE_ORGANIZATION_SLUG\""
   key: 'two'
   agents:
-    wanted: "true"
+    docker: "true"
     queue: default-queue
 
 
