@@ -7,19 +7,19 @@ steps:
   command: "echo \"Organization slug is $BUILDKITE_ORGANIZATION_SLUG\""
   key: 'two'
 
-
 - label: ":cow: dynamic pipeline"
-  command: |
+  command: | # Here we define a multi-line command with |
     if [ "$(buildkite-agent step get "outcome" --step "two")" == "passed" ]; then
-      cat << 'YAML' | buildkite-agent pipeline upload
-      steps:
-        - label: "Notify slack about soft failed step"
-          command: echo 'Notifying slack about the soft_failed step'
-          notify:
-            - github_commit_status:
-                context: "my-custom-status-2-failed"
-      YAML
-    fi  # Add fi to close the if statement
+      cat << 'YAML' | buildkite-agent pipeline upload  # Heredoc starts here
+        steps:  # Make sure this line and all within are indented the same
+          - label: "Notify slack about soft failed step"
+            command: echo 'Notifying slack about the soft_failed step'
+            notify:
+              - github_commit_status:
+                  context: "my-custom-status-2-failed"
+      YAML  # Heredoc ends here, ensure no extra characters before YAML
+    fi  # `fi` closes the if statement
+
 
 
 # - label: "List all environment variables in the job"
