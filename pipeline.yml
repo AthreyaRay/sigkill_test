@@ -9,10 +9,7 @@ steps:
 
 - command: echo 'deploy.sh'
   label: ':rocket: Deploy production'
-  branches: 'main'
-  agents:
-    deploy: true
-  concurrency: 1
+
 
 # - label: ":cow: dynamic pipeline"
 #   command: | # Here we define a multi-line command with |
