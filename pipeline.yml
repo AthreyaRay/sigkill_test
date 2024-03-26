@@ -9,6 +9,7 @@ steps:
 
 - command: echo 'deploy.sh'
   label: ':rocket: Deploy production'
+#### just to have git add done 
 
 
 # - label: ":cow: dynamic pipeline"
