@@ -2,7 +2,7 @@ steps:
 - label: ":rocket: Build"
   command: |
     mkdir -p logs
-    echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and This is step %n' > logs/$BUILDKITE_AGENT_ID.txt
+    echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and This is step $DATE' > logs/$BUILDKITE_AGENT_ID.txt
   key: 'one'
   name: 'abc'
   parallelism: 5
