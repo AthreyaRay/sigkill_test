@@ -3,7 +3,7 @@ steps:
   command: "echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and This is step 1'> builder.log "
   key: 'one'
   name: 'rocket'
-  artifact_paths: 'builder.log'
+  artifact_paths: './logs/*'
 
 
 
@@ -11,14 +11,18 @@ steps:
   command: "echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and This is step 2' > builder.log "
   key: 'two'
   name: 'rocket'
-  artifact_paths: 'builder.log'
+  artifact_paths: './logs/*'
 
 
 - label: ":rocket: Deploy"
   command: "echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and this is step 3 '> builder.log "
   key: 'three'
   name: 'rocket'
-  artifact_paths: './builder.log'
+  artifact_paths: './logs/*'
+
+- label: ":arrow_down: Download Artifact"
+  command: "buildkite-agent artifact download './logs' ."
+  depends_on: 'three'
 
 
 
