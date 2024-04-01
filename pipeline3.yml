@@ -3,6 +3,7 @@ steps:
   command: |
     mkdir -p logs
     echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and This is step $$BUILDKITE_PARALLEL_JOB' > logs/$$BUILDKITE_AGENT_ID.txt
+    buildkite-agent annotate "warning" --style "warning" --context "warning"
   key: 'one'
   name: 'abc'
   parallelism: 5
