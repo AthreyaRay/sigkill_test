@@ -6,26 +6,26 @@ steps:
     buildkite-agent annotate "warning" --style "warning" --context "warning"
   key: 'one'
   name: 'abc'
-  parallelism: 5
   artifact_paths: "logs/*"
 
-# - label: ":rocket: Test"
-#   command: |
-#     mkdir -p logs
-#     echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and This is step 2' > logs/$BUILDKITE_AGENT_ID.txt
-#   key: 'two'
-#   name: 'abc'
-#   artifact_paths: "logs/*"
+- label: ":rocket: Test"
+  command: |
+    mkdir -p logs
+    echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and This is step 2' > logs/$BUILDKITE_AGENT_ID.txt
+    buildkite-agent annotate "warning" --style "info" --context "warning"
+  key: 'two'
+  name: 'abc'
+  artifact_paths: "logs/*"
 
-# - label: ":rocket: Deploy"
-#   command: |
-#     mkdir -p logs
-#     echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and This is step 3' > logs/$BUILDKITE_AGENT_ID.txt
-#   key: 'three'
-#   name: 'abc'
-#   artifact_paths: "logs/*"
+- label: ":rocket: Deploy"
+  command: |
+    mkdir -p logs
+    echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and This is step 3' > logs/$BUILDKITE_AGENT_ID.txt
+  key: 'three'
+  name: 'abc'
+  artifact_paths: "logs/*"
 
-# - wait # Ensures that all steps complete and all artifacts are uploaded before downloading
+- wait # Ensures that all steps complete and all artifacts are uploaded before downloading
 
 - label: ":arrow_down: Download Artifacts"
   command: "buildkite-agent artifact download  'logs/*' ."
