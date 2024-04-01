@@ -1,0 +1,19 @@
+#!/bin/bash
+
+start=$(date +%s.%N)
+
+command=("$@")
+
+output=$("${command[@]}")
+exit_code=$?
+
+end=$(date +%s.%N)
+# Convert nanoseconds to milliseconds
+elapsed=$(echo "($end - $start) * 1000" | bc)
+rounded=$(printf "%.0f" "$elapsed")
+
+if [ $exit_code -eq 0 ]; then
+  echo $rounded
+else
+  exit $exit_code
+fi
