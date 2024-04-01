@@ -20,5 +20,9 @@ steps:
   name: 'rocket'
   artifact_paths: './builder.log'
 
+- label: ":arrow_down: Download Artifact"
+  command: "buildkite-agent artifact download 'builder.log' ./builder.log"
+  depends_on: 'three'
+
 
 
