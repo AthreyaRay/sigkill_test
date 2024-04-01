@@ -1,28 +1,27 @@
 steps:
 - label: ":rocket: Build"
-  command: "echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and This is step 1'> builder.log "
+  command: |
+    mkdir -p logs12
+    echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and This is step 1' > logs12/builder_step_1.log
   key: 'one'
-  name: 'rocket'
-  artifact_paths: './logs/*'
+  artifact_paths: logs12/*"
 
-
-
-- label: ":rocket: test"
-  command: "echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and This is step 2' > builder.log "
+- label: ":rocket: Test"
+  command: |
+    mkdir -p logs12
+    echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and This is step 2' > logs12/builder_step_2.log
   key: 'two'
-  name: 'rocket'
-  artifact_paths: './logs/*'
-
+  artifact_paths: logs12/*"
 
 - label: ":rocket: Deploy"
-  command: "echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and this is step 3 '> builder.log "
+  command: |
+    mkdir -p logs12
+    echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and This is step 3' > logs12/builder_step_3.log
   key: 'three'
-  name: 'rocket'
-  artifact_paths: './logs/*'
+  artifact_paths: logs12/*"
 
-- label: ":arrow_down: Download Artifact"
-  command: "buildkite-agent artifact download './logs' ."
-  depends_on: 'three'
+- wait # Ensures that all steps complete and all artifacts are uploaded before downloading
 
-
-
+- label: ":arrow_down: Download Artifacts"
+  command: "buildkite-agent artifact download  logs12/*' ."
+  depends_on: ["one", "two", "three"]
