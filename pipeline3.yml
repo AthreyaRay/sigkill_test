@@ -2,7 +2,7 @@ steps:
 - label: ":rocket: Build"
   command: |
     mkdir -p logs
-    echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and This is step 1' > logs/$BUILDKITE_AGENT_ID.txt
+    echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and This is step %n' > logs/$BUILDKITE_AGENT_ID.txt
   key: 'one'
   name: 'abc'
   parallelism: 5
@@ -26,6 +26,6 @@ steps:
 
 # - wait # Ensures that all steps complete and all artifacts are uploaded before downloading
 
-# - label: ":arrow_down: Download Artifacts"
-#   command: "buildkite-agent artifact download  'logs/*' ."
-#   depends_on: ["one", "two", "three"]
+- label: ":arrow_down: Download Artifacts"
+  command: "buildkite-agent artifact download  'logs/*' ."
+  depends_on: "one"
