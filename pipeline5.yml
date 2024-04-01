@@ -10,7 +10,8 @@ steps:
   command: "./post-checkout"
   artifact_paths: "post_checkout_output.txt"
 
-- wait
+- wait:
+  continue_on_failure: true
 
 - label: "Analyze Results"
   command: "echo Analyzing results..."
