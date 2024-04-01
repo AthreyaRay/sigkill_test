@@ -16,7 +16,7 @@ steps:
 
 - label: ":rocket: Deploy"
   command: "echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and $MY_FIXTURE'"
-  key: 'one'
+  key: 'three'
   name: 'rocket'
   artifact_paths:
   - logs/*
