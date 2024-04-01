@@ -3,16 +3,18 @@ steps:
   command: |
     mkdir -p logs
     echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and This is step $$BUILDKITE_PARALLEL_JOB' > logs/$$BUILDKITE_AGENT_ID.txt
-    buildkite-agent annotate "warning" --style "warning" --context "warning"
+    buildkite-agent annotate "warning" --style "warning" --context "warning this is the first step"
   key: 'one'
   name: 'abc'
   artifact_paths: "logs/*"
+
+- wait
 
 - label: ":rocket: Test"
   command: |
     mkdir -p logs
     echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and This is step 2' > logs/$BUILDKITE_AGENT_ID.txt
-    buildkite-agent annotate "warning" --style "info" --context "warning"
+    buildkite-agent annotate "warning" --style "info" --context "warning this is the second step"
   key: 'two'
   name: 'abc'
   artifact_paths: "logs/*"
