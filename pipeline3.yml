@@ -4,24 +4,24 @@ steps:
     mkdir -p logs
     echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and This is step 1' > logs/builder_step_1.log
   key: 'one'
-  artifact_paths: logs/*"
+  artifact_paths: "logs/*"
 
 - label: ":rocket: Test"
   command: |
     mkdir -p logs
     echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and This is step 2' > logs/builder_step_2.log
   key: 'two'
-  artifact_paths: logs/*"
+  artifact_paths: "logs/*"
 
 - label: ":rocket: Deploy"
   command: |
     mkdir -p logs
     echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and This is step 3' > logs/builder_step_3.log
   key: 'three'
-  artifact_paths: logs/*"
+  artifact_paths: "logs/*"
 
 - wait # Ensures that all steps complete and all artifacts are uploaded before downloading
 
 - label: ":arrow_down: Download Artifacts"
-  command: "buildkite-agent artifact download  logs/*' ."
+  command: "buildkite-agent artifact download  "logs/*' ."
   depends_on: ["one", "two", "three"]
