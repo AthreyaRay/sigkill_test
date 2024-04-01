@@ -23,5 +23,5 @@ steps:
 - wait # Ensures that all steps complete and all artifacts are uploaded before downloading
 
 - label: ":arrow_down: Download Artifacts"
-  command: "buildkite-agent artifact download  "logs/*' ."
+  command: "buildkite-agent artifact download  'logs/*' ."
   depends_on: ["one", "two", "three"]
