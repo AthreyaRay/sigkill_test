@@ -10,19 +10,19 @@ steps:
     check: $MY_FIXTURE
     queue: test_queue
 
-- label: ":rocket: Build"
-  command: "echo \"Organization slug is $BUILDKITE_ORGANIZATION_SLUG\""
-  key: 'two'
-  agents:
-    docker: "true"
-    queue: default-queue
-##
+# - label: ":rocket: Build"
+#   command: "echo \"Organization slug is $BUILDKITE_ORGANIZATION_SLUG\""
+#   key: 'two'
+#   agents:
+#     docker: "true"
+#     queue: default-queue
+# ##
 
-notify:
-- slack:
-    channels:
-    - "#training-and-testing"
-    message: "This message will trigger notification to Athreya <@athreya>!"
+# notify:
+# - slack:
+#     channels:
+#     - "#training-and-testing"
+#     message: "This message will trigger notification to Athreya <@athreya>!"
 
 ###
 
