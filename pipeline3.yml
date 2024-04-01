@@ -14,7 +14,7 @@ steps:
   command: |
     mkdir -p logs
     echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and This is step 2' > logs/$BUILDKITE_AGENT_ID.txt
-    buildkite-agent annotate "warning this is the second step" --style "info" --context "warning"
+    buildkite-agent annotate "warning this is the second step" --style "info" --context "info"
   key: 'two'
   name: 'abc'
   artifact_paths: "logs/*"
