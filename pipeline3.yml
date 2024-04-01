@@ -30,3 +30,26 @@ steps:
 - label: ":arrow_down: Download Artifacts"
   command: "buildkite-agent artifact download  'logs/*' ."
   depends_on: "one"
+
+- label: "default"
+  command: buildkite-agent annotate "default" --context "default"
+
+- wait:
+
+- label: "info"
+  command: buildkite-agent annotate "info" --style "info" --context "info"
+
+- wait:
+
+- label: "success"
+  command: buildkite-agent annotate "success" --style "success" --context "success"
+
+- wait:
+
+- label: "warning"
+  command: buildkite-agent annotate "warning" --style "warning" --context "warning"
+
+- wait:
+
+- label: "error"
+  command: buildkite-agent annotate "error" --style "error" --context "error"
