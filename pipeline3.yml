@@ -3,7 +3,7 @@ steps:
   command: "echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and $MY_FIXTURE'"
   key: 'one'
   name: 'rocket'
-  artifact_paths: 'builder.log'
+  artifact_paths: './builder.log'
 
 
 
@@ -11,14 +11,14 @@ steps:
   command: "echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and $MY_FIXTURE'"
   key: 'two'
   name: 'rocket'
-  artifact_paths: 'builder.log'
+  artifact_paths: './builder.log'
 
 
 - label: ":rocket: Deploy"
   command: "echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and $MY_FIXTURE'"
   key: 'three'
   name: 'rocket'
-  artifact_paths: 'builder.log'
+  artifact_paths: './builder.log'
 
 
 
