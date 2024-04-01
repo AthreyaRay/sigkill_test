@@ -2,22 +2,25 @@ steps:
 - label: ":rocket: Build"
   command: |
     mkdir -p logs
-    echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and This is step 1' > logs/builder_step_1.log
+    echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and This is step 1' > logs/$BUILDKITE_AGENT_ID.txt
   key: 'one'
+  name: 'abc'
   artifact_paths: "logs/*"
 
 - label: ":rocket: Test"
   command: |
     mkdir -p logs
-    echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and This is step 2' > logs/builder_step_2.log
+    echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and This is step 2' > logs/$BUILDKITE_AGENT_ID.txt
   key: 'two'
+  name: 'abc'
   artifact_paths: "logs/*"
 
 - label: ":rocket: Deploy"
   command: |
     mkdir -p logs
-    echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and This is step 3' > logs/builder_step_3.log
+    echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and This is step 3' > logs/$BUILDKITE_AGENT_ID.txt
   key: 'three'
+  name: 'abc'
   artifact_paths: "logs/*"
 
 - wait # Ensures that all steps complete and all artifacts are uploaded before downloading
