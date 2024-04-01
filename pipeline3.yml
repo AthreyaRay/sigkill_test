@@ -21,7 +21,7 @@ steps:
   artifact_paths: './builder.log'
 
 - label: ":arrow_down: Download Artifact"
-  command: "buildkite-agent artifact download 'builder.log' ./builder.log"
+  command: "buildkite-agent artifact download 'builder.log' ."
   depends_on: 'three'
 
 
