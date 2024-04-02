@@ -64,3 +64,6 @@ steps:
 
 ############### end of surprise ##############
 
+- label: "label vibe check"
+  command: echo "Hi , this step is passed"
+  # if: "build.pull_request_labels =~ /^ci:environment:\//)"
