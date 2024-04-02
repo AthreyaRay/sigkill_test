@@ -62,10 +62,9 @@ steps:
   command: |
     buildkite-agent annotate "<img class="emoji" title="one-does-not-simply" alt=":one-does-not-simply:" src="https://buildkiteassets.com/emojis/img-buildkite-64/one-does-not-simply.png" draggable="false" /> One does not simply annotate." --style "success"
 
-############### end of surprise ##############
 -wait:
 
 - label: "label vibe check"
-  command: echo "Hi , this step is passed $$"
-  if: build.state == "passed"
-  # if: build.pull_request.labels includes "bug"
+  command: echo 'This is working'
+  if: "build.pull_request.labels includes \"bug\""
+
