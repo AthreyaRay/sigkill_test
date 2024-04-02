@@ -8,7 +8,7 @@ steps:
   name: 'abc'
   artifact_paths: "ratata/*"
 
-- wait
+- wait:
 
 - label: ":rocket: Test"
   command: |
