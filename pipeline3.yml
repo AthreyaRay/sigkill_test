@@ -22,6 +22,7 @@ steps:
 - label: ":rocket: Deploy"
   command: |
     mkdir -p logs
+    $$PWD
     echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and This is step 3' > logs/$BUILDKITE_AGENT_ID.txt
   key: 'three'
   name: 'abc'
@@ -29,8 +30,8 @@ steps:
 
 - wait # Ensures that all steps complete and all artifacts are uploaded before downloading
 
-- label: ":arrow_down: Download Artifacts"
-  command: "buildkite-agent artifact download  'logs/*' ."
+- label: ":arrow_down: re-uplaod Artifacts"
+  command: "buildkite-agent artifact upload  'logs/*' ."
   depends_on: "one"
 
 - label: "default"
