@@ -36,7 +36,7 @@ steps:
 - label: "default"
   command: buildkite-agent annotate "default" --context "default"
   if: "build.pull_request.labels includes \"bug\""
-# build.pull_request_labels includes /^ci:environment:\w+$/)
+# build.pull_request_labels includes /^ci:environment:\w+$/) ##
 
 - wait:
 
