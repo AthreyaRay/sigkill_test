@@ -22,7 +22,6 @@ steps:
 - label: ":rocket: Deploy"
   command: |
     mkdir -p ratata
-    $PWD
     echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and This is step 3  $PWD' > ratata/$BUILDKITE_AGENT_ID.txt
   key: 'three'
   name: 'abc'
