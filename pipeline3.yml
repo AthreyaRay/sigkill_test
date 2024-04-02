@@ -67,4 +67,5 @@ steps:
 
 - label: "label vibe check"
   command: echo "Hi , this step is passed $$"
-  if: build.pull_request.labels includes "bug"
+  if: build.state == "passed"
+  # if: build.pull_request.labels includes "bug"
