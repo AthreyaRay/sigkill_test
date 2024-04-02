@@ -17,7 +17,7 @@ steps:
     buildkite-agent annotate "warning this is the second step" --style "info" --context "info"
   key: 'two'
   name: 'abc'
-  artifact_paths: "ratata/*"
+  artifact_paths: "ratata/*.txt"
 
 - label: ":rocket: Deploy"
   command: |
