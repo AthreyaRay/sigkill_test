@@ -1,0 +1,5 @@
+steps:
+- label: "default"
+  command: buildkite-agent annotate "default" --context "default"
+  if: "build.pull_request.labels includes \"bug\""
+
