@@ -4,16 +4,16 @@ steps:
   soft_fail: true
   key: 'one'
 
-- input: "Who is running this script?"
-  key: "name"
-  fields:
-  - text: "Your name"
-    key: "name"
+# - input: "Who is running this script?"
+#   key: "name"
+#   fields:
+#   - text: "Your name"
+#     key: "name"
 
-# - label: "Screenshot tests"
-#   command: echo "some command here"
-#   key: "Screenshot tests"
-#   soft_fail: true
+- label: "Screenshot tests"
+  command: echo "some command here"
+  key: "Screenshot tests"
+  soft_fail: true
 
 - label: "outcome of screenshot tests"
   key: "keytwo"
