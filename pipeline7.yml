@@ -31,9 +31,9 @@ steps:
   depends_on: "Screenshot testsp"
 
 
-- label: ":rocket: Build"
-  command: "echo 'job id is hi'"
-  depends_on: "keytwo"
+# - label: ":rocket: Build"
+#   command: "echo 'job id is hi'"
+#   depends_on: "keytwo"
 
 
 
