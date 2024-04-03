@@ -12,23 +12,23 @@ steps:
 
 - label: "Screenshot tests"
   command: echo "some command here"
-  key: "nameofthestep"
+  key: "Screenshot tests"
   soft_fail: true
 
 - label: "outcome of screenshot tests"
   key: "keytwo"
   command: |
-    if [ $$(buildkite-agent step get "outcome" --step "validation-check") == "soft_fail" ]; then
+    if [ $$(buildkite-agent step get "outcome" --step "Screenshot tests") == "soft_fail" ]; then
         cat <<- YAML | buildkite-agent pipeline upload
         steps:
           - input:" Who is running this script? Please enter your name if you wish to continue"
             fields:
              - text: "Your name"
                key: "name"
-     YAML
-     fi
+    YAML
+    fi
   timeout_in_minutes: 240
-  depends_on: "name of this step"
+  depends_on: "Screenshot testsp"
 
 
 - label: ":rocket: Build"
