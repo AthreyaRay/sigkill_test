@@ -11,7 +11,7 @@ steps:
     key: "name"
 
 - label: "Screenshot tests"
-  command: echo "some command here"
+  command: exit 1
   key: "Screenshot-tests"
   soft_fail: true
 
