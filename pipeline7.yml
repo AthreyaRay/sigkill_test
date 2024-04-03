@@ -5,9 +5,11 @@ steps:
   key: 'one'
 
 - input: "Who is running this script?"
+  key: "name"
   fields:
   - text: "Your name"
     key: "name"
+
 - label: "Run script"
   command: echo 'script.sh'
   depends_on: "name"
