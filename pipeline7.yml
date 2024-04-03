@@ -11,6 +11,7 @@ steps:
     key: "name"
 
 - label: "Run script"
-  command: echo 'script.sh'
+  command: ech 'script.sh'
   depends_on: "name"
+  soft_fail: true
 ###
