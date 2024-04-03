@@ -1,0 +1,12 @@
+steps:
+- label: ":rocket: Build"
+  command: "echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and $MY_FIXTURE'"
+  soft_fail: true
+  key: 'one'
+
+- input: "Who is running this script?"
+  fields:
+  - text: "Your name"
+    key: "name"
+- label: "Run script"
+  command: echo 'script.sh'
