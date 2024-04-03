@@ -10,4 +10,5 @@ steps:
     key: "name"
 - label: "Run script"
   command: echo 'script.sh'
+  depends_on: "name"
 ###
