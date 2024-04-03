@@ -11,7 +11,7 @@ steps:
     key: "name"
 
 - label: "Run script"
-  command: ech 'script.sh'
+  command: ping "www.google.com"
   timeout_in_minutes: 1
   depends_on: "name"
   soft_fail: true
