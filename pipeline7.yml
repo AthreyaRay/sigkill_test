@@ -6,6 +6,7 @@ steps:
 
 - input: "Who is running this script?"
   key: "name"
+  timeout_in_minutes: 1
   fields:
   - text: "Your name"
     key: "name"
