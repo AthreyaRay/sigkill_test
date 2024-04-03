@@ -11,14 +11,14 @@ steps:
 #     key: "name"
 
 - label: "Screenshot tests"
-  command: echo "oooo"
+  command: exit 1
   key: "Screenshot-tests"
   soft_fail: true
 
 - label: "outcome of screenshot tests"
   key: "keytwo"
   command: |
-    if [ $$(buildkite-agent step get "outcome" --step "Screenshot-tests") == "passed" ]; then
+    if [ $$(buildkite-agent step get "outcome" --step "Screenshot-tests") != "passed" ]; then
         cat <<- YAML | buildkite-agent pipeline upload
         steps:
           - block: ":rocket:  review and unblock this step please"
