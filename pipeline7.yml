@@ -30,6 +30,7 @@ steps:
   timeout_in_minutes: 240
   depends_on: "Screenshot-tests"
 
+wait:
 
 - label: ":rocket: Build"
   command: "echo 'job id is hi'"
