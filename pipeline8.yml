@@ -1,5 +1,6 @@
 env:
   CONTENT: $(cat ./bytes_copy.txt)
+  CONTENT2: $(cat ./bytes2_copy.txt)
 
 steps:
 - label: "Initial Annotation"
@@ -11,11 +12,15 @@ steps:
   command: |
     # Your scripts or test commands here
     echo "Simulating script execution or test commands..."
-    sleep 5 # Simulating time-consuming tasks
 
 - label: "Append to Annotation"
   command: |
     # Appending to the existing annotation with additional data
     echo "$CONTENT" | buildkite-agent annotate --append --style "info"
+
+- label: "Append to Annotation"
+  command: |
+    # Appending to the existing annotation with additional data
+    echo "$CONTENT2" | buildkite-agent annotate --append --style "info"
 
 #####
