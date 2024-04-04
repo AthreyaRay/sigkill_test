@@ -11,7 +11,7 @@ steps:
 - wait:
 
 
-####testing buildlable issue####
+####testing buildlable issue##########
 
 - label: ":rocket: Test"
   command: |
