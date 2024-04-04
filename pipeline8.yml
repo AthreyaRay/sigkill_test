@@ -14,6 +14,6 @@ steps:
   command: |
     # Appending to the existing annotation with additional data
     content =  $(cat bytes_copy.txt)
-    echo "$content." | buildkite-agent annotate --append --style "info"
+    echo "$content" | buildkite-agent annotate --append --style "info"
 
 #####
