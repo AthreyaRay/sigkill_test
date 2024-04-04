@@ -1,3 +1,6 @@
+env:
+  CONTENT: $(cat ./bytes_copy.txt)
+
 steps:
 - label: "Initial Annotation"
   command: |
@@ -13,7 +16,6 @@ steps:
 - label: "Append to Annotation"
   command: |
     # Appending to the existing annotation with additional data
-    content=$(cat ./bytes_copy.txt)
-    echo "$content" | buildkite-agent annotate --append --style "info"
+    echo "$CONTENT" | buildkite-agent annotate --append --style "info"
 
 #####
