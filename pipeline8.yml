@@ -1,7 +1,7 @@
 env:
-  # CONTENT: $(cat ./bytes_copy.txt)
-  # CONTENT2: $(cat ./bytes2_copy.txt)
-  
+# CONTENT: $(cat ./bytes_copy.txt)
+# CONTENT2: $(cat ./bytes2_copy.txt)
+
 
 
 steps:
@@ -25,10 +25,11 @@ steps:
 #     # Appending to the existing annotation with additional data
 #     echo "CONTENT2" | buildkite-agent annotate --append --style "warning"
 
-- label : "Repo name change test :rocket:"
-  command : 
-  curl -H "Authorization: token $GITHUB_OAUTH_TOKEN" \
-  -H "Accept: application/vnd.github.v3.raw" \
-  https://api.github.com/repos/AthreyaRay/step-update/contents/pipeline.yml
+- label: "Repo name change test :rocket:"
+  command: |
+    curl -H "Authorization: token $GITHUB_OAUTH_TOKEN" \
+    -H "Accept: application/vnd.github.v3.raw" \
+    https://api.github.com/repos/AthreyaRay/step-update/contents/pipeline.yml
+
 
 #####
