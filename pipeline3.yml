@@ -1,0 +1,75 @@
+steps:
+- label: ":rocket: Build"
+  command: |
+    mkdir -p ratata
+    echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and This is step $$BUILDKITE_PARALLEL_JOB' > ratata/$$BUILDKITE_AGENT_ID.txt
+    buildkite-agent annotate "warning this is the first step" --style "warning" --context "warning"
+  key: 'one'
+  name: 'abc'
+  artifact_paths: "ratata/*"
+
+- wait:
+
+
+####testing buildlable issue##########
+
+- label: ":rocket: Test"
+  command: |
+    mkdir -p ratata
+    echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and This is step 2' > ratata/$BUILDKITE_AGENT_ID.txt
+    buildkite-agent annotate "warning this is the second step" --style "info" --context "info"
+  key: 'two'
+  name: 'abc'
+  artifact_paths: "ratata/*.txt"
+
+- label: ":rocket: Deploy"
+  command: |
+    mkdir -p ratata
+    echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and This is step 3  $PWD' > ratata/$BUILDKITE_AGENT_ID.txt
+  key: 'three'
+  name: 'abc'
+  artifact_paths: "ratata/*"
+
+- wait # Ensures that all steps complete and all artifacts are uploaded before downloading
+
+- label: ":arrow_down: re-uplaod Artifacts"
+  command: "buildkite-agent artifact upload  'ratata/*' ."
+  depends_on: "one"
+
+- label: "default"
+  command: buildkite-agent annotate "default" --context "default"
+  if: "build.pull_request.labels includes \"bug\""
+# build.pull_request_labels includes /^ci:environment:\w+$/) ##
+
+- wait:
+
+- label: "info"
+  command: buildkite-agent annotate "info" --style "info" --context "info"
+
+- wait:
+
+- label: "success"
+  command: buildkite-agent annotate "success" --style "success" --context "success"
+
+- wait:
+
+- label: "warning"
+  command: buildkite-agent annotate "warning" --style "warning" --context "warning"
+
+- wait:
+
+- label: "error"
+  command: buildkite-agent annotate "error" --style "error" --context "error"
+
+
+
+- label: "surprise"
+  command: |
+    buildkite-agent annotate "<img class="emoji" title="one-does-not-simply" alt=":one-does-not-simply:" src="https://buildkiteassets.com/emojis/img-buildkite-64/one-does-not-simply.png" draggable="false" /> One does not simply annotate." --style "success"
+
+-wait:
+
+- label: "label vibe check"
+  command: echo 'This is working'
+
+

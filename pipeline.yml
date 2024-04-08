@@ -1,7 +1,87 @@
 steps:
 - label: ":rocket: Build"
-  command: "echo 'Building abc.sh'"
+  command: "echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID'"
   key: 'one'
 
-- label: ":danger: Terminating agents after use"
-  command: "./agentkil.sh"
+- label: ":rocket: Build"
+  command: "echo \"Organization slug is $BUILDKITE_ORGANIZATION_SLUG\""
+  key: 'two'
+
+- command: echo 'deploy.sh'
+  label: ':rocket: Deploy production'
+#### just to have git add done ######
+
+
+# - label: ":cow: dynamic pipeline"
+#   command: | # Here we define a multi-line command with |
+#     if [ "$(buildkite-agent step get "outcome" --step "two")" == "passed" ]; then
+#       cat << 'YAML' | buildkite-agent pipeline upload  # Heredoc starts here
+#         steps:  # Make sure this line and all within are indented the same
+#           - label: "Notify slack about soft failed step"
+#             command: echo 'Notifying slack about the soft_failed step'
+#             notify:
+#               - github_commit_status:
+#                   context: "my-custom-status-2-failed"
+#       YAML  # Heredoc ends here, ensure no extra characters before YAML
+#     fi  # `fi` closes the if statement
+
+
+
+# - label: "List all environment variables in the job"
+#   command: "env | tee builder.log | grep 'BUILDKITE'"
+#   artifact_paths: "builder.log"
+
+
+
+# - label: ":cow: Buildkite exit status check" ################################### ###### ###### ##### ###### ###### ###### ######## ######### ####
+#   command: |
+#     if [ "$$BUILDKITE_COMMAND_EXIT_STATUS" != 0 ]; then
+#       cat << 'YAML' | buildkite-agent pipeline upload
+#       steps:
+#         - block: ":rocket: Are we ready?"
+#     YAML
+#     fi
+
+
+
+
+
+# notify:
+# - if: build.env("$$BUILDKITE_COMMAND_EXIT_STATUS") != 0 #########
+#   slack:
+#     channels:
+#     - "Support_test_account#training-and-testing"
+#     message: "this is notification due to message condition meet"
+
+
+
+
+# notify:
+# - if: build.branch == pipeline.default_branch || build.message =~ /deploy/ ######### #### ####
+#   slack:
+#     channels:
+#     - "Support_test_account#training-and-testing"
+#     message: "this is notification due to message condition meet"
+
+# notify:::::::
+# # Notifying to support_test_account workspace and channek training-and-testing in that workspace
+# - slack: "Support_test_account#training-and-testing"
+#############
+# - label: ":danger: Terminating agents after usee"""""
+#   command: "./agentkil.sh"
+
+# notify:
+
+#   -slack: "#slack_notification_test"
+
+# - slack:
+#     channels:
+#     - "Support_test_account#training-and-testing"
+#     message: "Hello I'm a custom success message"
+#   if: build.state == "passed"
+# - slack:
+#     channels:
+#     - "Support_test_account#training-and-testing"
+#     message: "Hello I'm a custom failed message"
+#   if: build.state == "failed"
+

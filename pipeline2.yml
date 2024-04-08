@@ -1,0 +1,43 @@
+
+env:
+  MY_FIXTURE: "1.2.3"
+
+steps:
+- label: ":rocket: Build"
+  command: "echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and $MY_FIXTURE'"
+  key: 'one'
+  agents:
+    check: $MY_FIXTURE
+    queue: test_queue
+
+# - label: ":rocket: Build"
+#   command: "echo \"Organization slug is $BUILDKITE_ORGANIZATION_SLUG\""
+#   key: 'two'
+#   agents:
+#     docker: "true"
+#     queue: default-queue
+# ##
+
+# notify:
+# - slack:
+#     channels:
+#     - "#training-and-testing"
+#     message: "This message will trigger notification to Athreya <@athreya>!"
+
+###
+
+
+
+
+# - label: ":cow: dynamic pipeline"
+#   command: |
+#     if [ "$(buildkite-agent step get "outcome" --step "two")" == "hard_failed" ]; then
+#       cat <<- YAML | buildkite-agent pipeline upload
+#       steps:
+#         - label: "Example Script"
+#           command: "echo script.sh"
+#           notify:
+#             - github_commit_status:
+#                 context: "my-custom-status for this build is failed"
+#     YAML
+#     fi

@@ -1,0 +1,6 @@
+steps:
+- label: "default"
+  trigger: starter-pipeline
+  if: (build.pull_request.labels includes \"bug\"")
+  #######
+

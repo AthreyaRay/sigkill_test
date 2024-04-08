@@ -1,0 +1,34 @@
+env:
+  # CONTENT: $(cat ./bytes_copy.txt)
+  # CONTENT2: $(cat ./bytes2_copy.txt)
+  
+
+
+steps:
+# - label: "Initial Annotation"
+#   command: |
+#     # Adding initial annotation
+#     echo "Initial build information" | buildkite-agent annotate --style "info"
+
+# - label: "Run Scripts or Tests"
+#   command: |
+#     # Your scripts or test commands here
+#     echo "Simulating script execution or test commands..."
+
+# - label: "Append to Annotation"
+#   command: |
+#     # Appending to the existing annotation with additional data
+#     echo "$CONTENT" | buildkite-agent annotate --append --style "info"
+
+# - label: "Append to Annotation"
+#   command: |
+#     # Appending to the existing annotation with additional data
+#     echo "CONTENT2" | buildkite-agent annotate --append --style "warning"
+
+- label : "Repo name change test :rocket:"
+  command : 
+  curl -H "Authorization: token $GITHUB_OAUTH_TOKEN" \
+  -H "Accept: application/vnd.github.v3.raw" \
+  https://api.github.com/repos/AthreyaRay/step-update/contents/pipeline.yml
+
+#####
