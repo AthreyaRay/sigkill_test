@@ -5,6 +5,11 @@ env:
 
 
 steps:
+- label: Hello World!
+  command: echo Hello World!
+  agents:
+    queue: kubernetes
+
 # - label: "Initial Annotation"
 #   command: |
 #     # Adding initial annotation
@@ -25,14 +30,14 @@ steps:
 #     # Appending to the existing annotation with additional data
 #     echo "CONTENT2" | buildkite-agent annotate --append --style "warning"
 
-- label: "Repo name change test :rocket:"
-  command: |
-    curl -H "Authorization: token $GITHUB_OAUTH_TOKEN" \
-    -H "Accept: application/vnd.github.v3.raw" \
-    https://api.github.com/repos/AthreyaRay/step-update21/contents/pipeline.yml
+# - label: "Repo name change test :rocket:"
+#   command: |
+#     curl -H "Authorization: token $GITHUB_OAUTH_TOKEN" \
+#     -H "Accept: application/vnd.github.v3.raw" \
+#     https://api.github.com/repos/AthreyaRay/step-update21/contents/pipeline.yml
 
-- label: "Debug environment variables"
-  command: "env | grep GITHUB_OAUTH_TOKEN || echo 'GITHUB_OAUTH_TOKEN not found'"
+# - label: "Debug environment variables"
+#   command: "env | grep GITHUB_OAUTH_TOKEN || echo 'GITHUB_OAUTH_TOKEN not found'"
 
 
 
