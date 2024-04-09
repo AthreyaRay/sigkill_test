@@ -35,22 +35,5 @@ steps:
   command: "env | grep GITHUB_OAUTH_TOKEN || echo 'GITHUB_OAUTH_TOKEN not found'"
 
 
-- block: "Deploy?"
-  fields:
-  - select: "Deploy to environment"
-    key: "deploy_env"
-    options:
-    - label: "Production"
-      value: "production"
-    - label: "Staging"
-      value: "staging"
-- label: ':rocket: Deploy to Production'
-  command: 'deploy-production.sh'
-  if: build.meta_data("deploy_env") == "production"
-- label: ':rocket: Deploy to Staging'
-  command: 'deploy-staging.sh'
-  if: build.meta_data("deploy_env") == "staging"
-
-
 
 #####
