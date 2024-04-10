@@ -1,0 +1,50 @@
+steps:
+- label: ":rocket: Build"
+  command: "echo 'job id is $BUILDKITE_JOB_ID and build id is $BUILDKITE_BUILD_ID and $MY_FIXTURE'"
+  soft_fail: true
+  key: 'one'
+
+# - input: "Who is running this script?"
+#   key: "name"
+#   fields:
+#   - text: "Your name"
+#     key: "name"
+
+- label: "Screenshot tests"
+  command: echo "hi"
+  key: "Screenshot-tests"
+  soft_fail: true
+
+- label: "outcome of screenshot tests"
+  key: "keytwo"
+  command: |
+    if [ $$(buildkite-agent step get "outcome" --step "Screenshot-tests") != "passed" ]; then
+        cat <<- YAML | buildkite-agent pipeline upload
+        steps:
+          - block: ":rocket:  review and unblock this step please"
+    YAML
+    fi
+  timeout_in_minutes: 240
+  depends_on: "Screenshot-tests"
+
+
+- label: ":rocket: Build"
+  command: "echo 'job id is hi'"
+  depends_on: "keytwo"
+
+
+
+# - label: "outcome of screenshot tests"
+#   key: "keytwo"
+#   command: |
+#     if [ $$(buildkite-agent step get "outcome" --step "Screenshot tests") == "soft_fail" ]; then
+#         cat <<- YAML | buildkite-agent pipeline upload
+#         steps:
+#           - input:" Who is running this script? Please enter your name if you wish to continue"
+#             fields:
+#              - text: "Your name"
+#                key: "name"
+#     YAML
+#     fi
+#   timeout_in_minutes: 240
+#   depends_on: "Screenshot-tests"
