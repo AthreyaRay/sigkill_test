@@ -1,0 +1,4 @@
+steps:
+- key: push-run-mock-container
+  label: ":docker: push-run-mock-container 2 "
+  command: echo $$VARIABLE1

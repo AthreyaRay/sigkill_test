@@ -1,4 +1,9 @@
 steps:
 - label: "Run Tests"
-  command: echo "run-tests.sh" && sleep 300
-  timeout_in_minutes: "${TIMEOUT_IN_MINUTES}"
+  command: buildkite-agent pipeline upload .buildkite/pipeline1.yml
+
+- label: "Run Tests again"
+  command: buildkite-agent pipeline upload .buildkite/pipeline2.yml
+
+- label: "Run Tests 3"
+  command: echo $$VARIABLE1
