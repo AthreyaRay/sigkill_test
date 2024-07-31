@@ -1,6 +1,4 @@
-env:
-  VARIABLE1: "true" # !!!! env var on the top level for all jobs !!!!
 steps:
-- key: push-run-mock-container
-  label: ":docker: push-run-mock-container"
+- key: push-run-mock-container23
+  label: ":docker: push-run-mock-container 2 "
   command: echo $VARIABLE1
