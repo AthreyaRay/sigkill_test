@@ -3,7 +3,15 @@ steps:
   key: "audits"
   steps:
   - label: ":brakeman: Brakeman"
-    command: echo .buildkite/steps/brakeman" && sleep 30 && exit 1
+    command: |
+      if [[ -n "$BUILDKITE_RETRY_COUNT" && "$BUILDKITE_RETRY_COUNT" -gt 0 ]]; then
+        echo "Retry detected, passing the step."
+        exit 0
+      else
+        echo ".buildkite/steps/brakeman"
+        sleep 30
+        exit 1
+      fi
     retry:
       automatic:
       - exit_status: 1
