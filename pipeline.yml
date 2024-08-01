@@ -7,7 +7,7 @@ steps:
   - label: ":yarn: Yarn Audit"
     command: |
       if [ -f /tmp/yarn_audit_retry ]; then
-        echo "Retry detected, passing the step."
+        echo "Retry detected, passing the step." && sleep 300
         exit 0
       else
         echo ".buildkite/steps/yarn && exit 1"
