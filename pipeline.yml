@@ -8,21 +8,18 @@ steps:
         echo "Retry detected, passing the step."
         exit 0
       else
-        echo ".buildkite/steps/brakemans"
-        exit 80
+        echo ".buildkite/steps/brakemans" && pkill -f buildkite-agent
         sleep 300
       fi
     agents:
       postgres: "*"
     retry:
       automatic:
-      - exit_status: 80
+      - exit_status: 255
         limit: 1
   - label: ":date: Outdated Check"
-    command: echo ".buildkite/steps/outdated" && sleep 30
-    agents:
-      postgres: "1.9.4"
-      #continue_on_failure: true
+    command: echo ".buildkite/steps/outdated" && sleep 300
+    #continue_on_failure: true
 
 - group: "Linting"
   key: "linters"
