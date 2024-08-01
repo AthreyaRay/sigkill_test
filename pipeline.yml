@@ -4,7 +4,7 @@ steps:
   steps:
   - label: ":brakeman: Brakeman"
     command: |
-      if [[ -n "$BUILDKITE_RETRY_COUNT" && "$BUILDKITE_RETRY_COUNT" -gt 0 ]]; then
+      if [[ -n "$$BUILDKITE_RETRY_COUNT" && "$$BUILDKITE_RETRY_COUNT" -gt 0 ]]; then
         echo "Retry detected, passing the step."
         exit 0
       else
