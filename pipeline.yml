@@ -31,5 +31,6 @@ steps:
     fi
 
   retry:
-    automatic: true
-    limit: 1
+    automatic:
+      exit_status: 2
+      limit: 1
