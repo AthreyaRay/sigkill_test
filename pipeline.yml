@@ -15,7 +15,7 @@ steps:
       postgres: "*"
     retry:
       automatic:
-      - exit_status: 255
+      - exit_status: -1
         limit: 1
   - label: ":date: Outdated Check"
     command: echo ".buildkite/steps/outdated" && sleep 300
