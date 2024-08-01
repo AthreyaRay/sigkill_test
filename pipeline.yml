@@ -17,7 +17,7 @@ steps:
       - exit_status: 80
         limit: 1
   - label: ":date: Outdated Check"
-    command: echo ".buildkite/steps/outdated" && sleep 300
+    command: echo ".buildkite/steps/outdated" && sleep 30
     #continue_on_failure: true
 
 - group: "Linting"
