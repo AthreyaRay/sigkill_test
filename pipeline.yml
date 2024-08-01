@@ -5,15 +5,7 @@ steps:
   - label: ":brakeman: Brakeman"
     command: "echo .buildkite/steps/brakeman"
   - label: ":yarn: Yarn Audit"
-    command: |
-      if [ -f /tmp/yarn_audit_retry_new ]; then
-        echo "Retry detected, passing the step." && sleep 300
-        exit 0
-      else
-        echo ".buildkite/steps/yarn && exit 1"
-        touch /tmp/yarn_audit_retry_new
-        exit 1
-      fi
+    command: "if [ -f /tmp/yarn_audit_retry_new_1 ]; then\n  echo \"Retry detected, passing the step.\" \n  exit 0\nelse\n  echo \".buildkite/steps/yarn\" && exit 1 && && sleep 300\n  touch /tmp/yarn_audit_retry_new_1\n  exit 1\nfi\n"
     retry:
       automatic:
       - exit_status: 1
