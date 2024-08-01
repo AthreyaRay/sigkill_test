@@ -21,8 +21,8 @@ steps:
   - label: ":date: Outdated Check"
     command: echo ".buildkite/steps/outdated" && sleep 30
     agents:
-    postgres: "*"
-    #continue_on_failure: true
+      postgres: "*"
+      #continue_on_failure: true
 
 - group: "Linting"
   key: "linters"
