@@ -13,7 +13,7 @@ steps:
         sleep 300
       fi
     agents:
-      postgres: "1.9.4"
+      postgres: "*"
     retry:
       automatic:
       - exit_status: 80
@@ -21,7 +21,7 @@ steps:
   - label: ":date: Outdated Check"
     command: echo ".buildkite/steps/outdated" && sleep 30
     agents:
-      postgres: "*"
+      postgres: "1.9.4"
       #continue_on_failure: true
 
 - group: "Linting"
