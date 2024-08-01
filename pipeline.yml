@@ -17,6 +17,8 @@ steps:
       automatic:
       - exit_status: -1
         limit: 1
+      - exit_status: 1
+        limit: 1
   - label: ":date: Outdated Check"
     command: echo ".buildkite/steps/outdated"
     #continue_on_failure: true
