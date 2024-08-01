@@ -1,23 +1,35 @@
 steps:
-- group: ":lock_with_ink_pen: Security Audits"
-  key: "audits"
-  steps:
-  - label: ":brakeman: Brakeman"
-    command: "echo .buildkite/steps/brakeman"
-  - label: ":yarn: Yarn Audit"
-    command: "if [ -f /tmp/yarn_audit_retry_new_345 ]; then\n  echo \"Retry detected, passing the step.\"\n  exit 0\nelse\n  echo \".buildkite/steps/yarn\" \n  touch /tmp/yarn_audit_retry_new_34 && exit 1 && sleep 300\n  exit 1\nfi\n"
-    # retry:
-    #   automatic:
-    #   - exit_status: 1
-    #     limit: 1
-  - label: ":date: Outdated Check"
-    command: "echo .buildkite/steps/outdated"
-    # continue_on_failure: true
+- label: "Fail first, pass on retry"
+  command: |
+    #!/bin/bash
 
-- group: "Linting"
-  key: "linters"
-  steps:
-  - label: ":lint-roller: Linting task"
-    command: "echo .buildkite/steps/linter"
-  - label: ":lint-roller: Linting code"
-    command: "echo .buildkite/steps/code-linter"
+    # Define a file to store the attempt count
+    ATTEMPT_FILE="attempt_count.txt"
+
+    # Initialize the attempt count if the file does not exist
+    if [ ! -f "$ATTEMPT_FILE" ]; then
+      echo 0 > "$ATTEMPT_FILE"
+    fi
+
+    # Read the current attempt count
+    ATTEMPT_COUNT=$(cat "$ATTEMPT_FILE")
+
+    # Increment the attempt count
+    ATTEMPT_COUNT=$((ATTEMPT_COUNT + 1))
+    echo $ATTEMPT_COUNT > "$ATTEMPT_FILE"
+
+    # Fail on the first attempt, pass on the second
+    if [ "$ATTEMPT_COUNT" -lt 2 ]; then
+      echo "Failing attempt $ATTEMPT_COUNT"
+      # Exit with a non-zero exit code that is not 1
+      exit 2
+    else
+      echo "Passing attempt $ATTEMPT_COUNT"
+      # Cleanup: remove the attempt count file
+      rm "$ATTEMPT_FILE"
+      exit 0
+    fi
+
+  retry:
+    automatic: true
+    limit: 1
