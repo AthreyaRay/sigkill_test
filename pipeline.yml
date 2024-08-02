@@ -35,6 +35,9 @@
 
 
 steps:
-- trigger: "skiptest123"
-  label: "Trigger Checkout Skip Test Pipeline"
+- label: ":information_source: Echo Step"
+  command: echo "This is an echo step before triggering the pipeline."
+
+- label: "Trigger Checkout Skip Test Pipeline"
+  trigger: "checkout-skip-test"
 
