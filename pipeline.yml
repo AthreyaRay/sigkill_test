@@ -3,26 +3,19 @@ steps:
   key: "audits"
   steps:
   - label: ":brakeman: Brakeman"
-    command: |
-      if [[ -n "$$BUILDKITE_RETRY_COUNT" && "$$BUILDKITE_RETRY_COUNT" -gt 0 ]]; then
-        echo "Retry detected, passing the step."
-        exit 0
-      else
-        echo ".buildkite/steps/brakemans" && pkill -f buildkite-agent
-        sleep 300
-      fi
+    command: "if [[ -n \"$$BUILDKITE_RETRY_COUNT\" && \"$$BUILDKITE_RETRY_COUNT\" -gt 0 ]]; then\n  echo \"Retry detected, passing the step.\"\n  exit 0\nelse\n  echo \".buildkite/steps/brakemans\" \n  sleep 300\nfi\n"
     agents:
       postgres: "*"
-    retry:
-      automatic:
-      - exit_status: -1
-        limit: 1
-      - exit_status: 1
-        limit: 1
-      - exit_status: 255
-        limit: 1
+      # retry:
+      #   automatic:
+      #   - exit_status: -1
+      #     limit: 1
+      #   - exit_status: 1
+      #     limit: 1
+      #   - exit_status: 255
+      #     limit: 1
   - label: ":date: Outdated Check"
-    command: echo ".buildkite/steps/outdated"
+    command: echo ".buildkite/steps/outdated" && sleep 300
     #continue_on_failure: true
 
 - group: "Linting"
