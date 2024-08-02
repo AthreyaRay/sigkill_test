@@ -24,4 +24,4 @@ steps:
   - label: ":lint-roller: Linting task"
     command: "echo .buildkite/steps/linter"
   - label: ":lint-roller: Linting code"
-    command: "echo .buildkite/steps/code-linter"
+    command: "echo .buildkite/steps/code-linteeeer"
