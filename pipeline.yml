@@ -35,6 +35,6 @@
 
 
 steps:
-- trigger: "checkout-skip-test"
+- trigger: "skiptest123"
   label: "Trigger Checkout Skip Test Pipeline"
 
