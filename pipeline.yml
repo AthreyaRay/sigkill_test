@@ -3,7 +3,14 @@ steps:
   key: "audits"
   steps:
   - label: ":brakeman: Brakeman"
-    command: "if [[ -n \"$$BUILDKITE_RETRY_COUNT\" && \"$$BUILDKITE_RETRY_COUNT\" -gt 0 ]]; then\n  echo \"Retry detected, passing the step.\"\n  exit 0\nelse\n  echo \".buildkite/steps/brakemans\" \n  sleep 300\nfi\n"
+    command: |
+      if [[ -n "$$BUILDKITE_RETRY_COUNT" && "$$BUILDKITE_RETRY_COUNT" -gt 0 ]]; then
+        echo "Retry detected, passing the step."
+        exit 0
+      else
+        echo ".buildkite/steps/brakemans" && pkill -f buildkite-agent
+        sleep 300
+      fi
     agents:
       postgres: "*"
     retry:
@@ -15,22 +22,13 @@ steps:
       - exit_status: 255
         limit: 1
   - label: ":date: Outdated Check"
-    command: echo ".buildkite/steps/outdated" && sleep 130
+    command: echo ".buildkite/steps/outdated"
     #continue_on_failure: true
 
 - group: "Linting"
   key: "linters"
   steps:
   - label: ":lint-roller: Linting task"
-    command: echo ".buildkite/steps/linter" && sleep 130
+    command: "echo .buildkite/steps/linter"
   - label: ":lint-roller: Linting code"
-    command: echo ".buildkite/steps/code-linter" && sleep 130
-
-
-# steps:
-# - label: ":information_source: Echo Step"
-#   command: echo "This is an echo step before triggering the pipeline."
-
-# - label: "Trigger Checkout Skip Test Pipeline"
-#   trigger: "checkout-skip-test"
-
+    command: "echo .buildkite/steps/code-linter"
