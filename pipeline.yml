@@ -18,13 +18,13 @@ steps:
     command: echo ".buildkite/steps/outdated"
     #continue_on_failure: true
 
-# - group: "Linting"
-#   key: "linters"
-#   steps:
-#   - label: ":lint-roller: Linting task"
-#     command: "echo .buildkite/steps/linter"
-#   - label: ":lint-roller: Linting code"
-#     command: "echo .buildkite/steps/code-linter"
+- group: "Linting"
+  key: "linters"
+  steps:
+  - label: ":lint-roller: Linting task"
+    command: "echo .buildkite/steps/linter"
+  - label: ":lint-roller: Linting code"
+    command: "echo .buildkite/steps/code-linter"
 
 
 # steps:
