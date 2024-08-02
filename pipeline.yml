@@ -15,16 +15,16 @@ steps:
       - exit_status: 255
         limit: 1
   - label: ":date: Outdated Check"
-    command: echo ".buildkite/steps/outdated" && sleep 300
+    command: echo ".buildkite/steps/outdated" && sleep 130
     #continue_on_failure: true
 
 - group: "Linting"
   key: "linters"
   steps:
   - label: ":lint-roller: Linting task"
-    command: "echo .buildkite/steps/linter"
+    command: echo ".buildkite/steps/linter" && sleep 130
   - label: ":lint-roller: Linting code"
-    command: "echo .buildkite/steps/code-linter"
+    command: echo ".buildkite/steps/code-linter" && sleep 130
 
 
 # steps:
