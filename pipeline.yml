@@ -1,43 +1,43 @@
-# steps:
-# - group: ":lock_with_ink_pen: Security Audits"
-#   key: "audits"
-#   steps:
-#   - label: ":brakeman: Brakeman"
-#     command: |
-#       if [[ -n "$$BUILDKITE_RETRY_COUNT" && "$$BUILDKITE_RETRY_COUNT" -gt 0 ]]; then
-#         echo "Retry detected, passing the step."
-#         exit 0
-#       else
-#         echo ".buildkite/steps/brakemans" && pkill -f buildkite-agent
-#         sleep 300
-#       fi
-#     agents:
-#       postgres: "*"
-#     retry:
-#       automatic:
-#       - exit_status: -1
-#         limit: 1
-#       - exit_status: 1
-#         limit: 1
-#       - exit_status: 255
-#         limit: 1
-#   - label: ":date: Outdated Check"
-#     command: echo ".buildkite/steps/outdated"
-#     #continue_on_failure: true
-
-# - group: "Linting"
-#   key: "linters"
-#   steps:
-#   - label: ":lint-roller: Linting task"
-#     command: "echo .buildkite/steps/linter"
-#   - label: ":lint-roller: Linting code"
-#     command: "echo .buildkite/steps/code-linter"
-
-
 steps:
-- label: ":information_source: Echo Step"
-  command: echo "This is an echo step before triggering the pipeline."
+- group: ":lock_with_ink_pen: Security Audits"
+  key: "audits"
+  steps:
+  - label: ":brakeman: Brakeman"
+    command: |
+      if [[ -n "$$BUILDKITE_RETRY_COUNT" && "$$BUILDKITE_RETRY_COUNT" -gt 0 ]]; then
+        echo "Retry detected, passing the step."
+        exit 0
+      else
+        echo ".buildkite/steps/brakemans" && pkill -f buildkite-agent
+        sleep 300
+      fi
+    agents:
+      postgres: "*"
+    retry:
+      automatic:
+      - exit_status: -1
+        limit: 1
+      - exit_status: 1
+        limit: 1
+      - exit_status: 255
+        limit: 1
+  - label: ":date: Outdated Check"
+    command: echo ".buildkite/steps/outdated" && sleep 300
+    #continue_on_failure: true
 
-- label: "Trigger Checkout Skip Test Pipeline"
-  trigger: "checkout-skip-test"
+- group: "Linting"
+  key: "linters"
+  steps:
+  - label: ":lint-roller: Linting task"
+    command: "echo .buildkite/steps/linter"
+  - label: ":lint-roller: Linting code"
+    command: "echo .buildkite/steps/code-linter"
+
+
+# steps:
+# - label: ":information_source: Echo Step"
+#   command: echo "This is an echo step before triggering the pipeline."
+
+# - label: "Trigger Checkout Skip Test Pipeline"
+#   trigger: "checkout-skip-test"
 
