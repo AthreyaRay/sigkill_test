@@ -5,7 +5,7 @@ steps:
   - label: ":brakeman: Brakeman"
     command: "if [[ -n \"$$BUILDKITE_RETRY_COUNT\" && \"$$BUILDKITE_RETRY_COUNT\" -gt 0 ]]; then\n  echo \"Retry detected, passing the step.\"\n  exit 0\nelse\n  echo \".buildkite/steps/brakemans\" \n  sleep 300\nfi\n"
     agents:
-      postgres: "*"
+      postgres: "1.9.4"
       retry:
         automatic:
         - exit_status: -1
