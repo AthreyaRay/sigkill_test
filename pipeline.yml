@@ -47,14 +47,8 @@ steps:
 
 - label: "Check if pipeline1.yml or pipeline2.yml was triggered"
   command: |
-    if [[ "$(buildkite-agent meta-data get 'pipeline1_triggered')" == "true" ]]; then
-      echo "pipeline1.yml was triggered"
+    if [[ "$(buildkite-agent meta-data get 'pipeline1_triggered')" == "true" ]] || [[ "$(buildkite-agent meta-data get 'pipeline2_triggered')" == "true" ]]; then
+      echo "Either pipeline1.yml or pipeline2.yml was triggered"
     else
-      echo "pipeline1.yml was not triggered"
-    fi
-
-    if [[ "$(buildkite-agent meta-data get 'pipeline2_triggered')" == "true" ]]; then
-      echo "pipeline2.yml was triggered"
-    else
-      echo "pipeline2.yml was not triggered"
+      echo "Neither pipeline1.yml nor pipeline2.yml was triggered"
     fi
