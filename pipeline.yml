@@ -34,9 +34,15 @@ steps:
       watch:
       - path: pipeline1.yml
         config:
-          command: buildkite-agent pipeline upload pipeline1.yml
+          command: |
+            buildkite-agent meta-data set "pipeline1_triggered" "true"
+            buildkite-agent pipeline upload pipeline1.yml
 
-- label: "No changes detected"
-  command: echo "No changes detected in pipeline1.yml"
-  if: |
-    build.state == "passed" && buildkite-agent get metadata "has_failed" == true
+- label: "Check if pipeline1.yml was triggered"
+  command: |
+    if [[ "$(buildkite-agent meta-data get 'pipeline1_triggered')" == "true" ]]; then
+      echo "pipeline1.yml was triggered"
+
+    else
+      echo "pipeline1.yml was not triggered"
+
