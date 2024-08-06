@@ -38,4 +38,5 @@ steps:
 
 - label: "No changes detected"
   command: echo "No changes detected in pipeline1.yml"
-  if: build.state == 'passed' && !build.meta_data.monorepo-diff-paths-changed
+  if: |
+    build.state == "passed" && buildkite-agent get metadata "has_failed" == true
