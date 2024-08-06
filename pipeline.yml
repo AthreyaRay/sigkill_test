@@ -1,27 +1,41 @@
-steps:
-- group: ":lock_with_ink_pen: Security Audits"
-  key: "audits"
-  steps:
-  - label: ":brakeman: Brakeman"
-    command: "if [[ -n \"$$BUILDKITE_RETRY_COUNT\" && \"$$BUILDKITE_RETRY_COUNT\" -gt 0 ]]; then\n  echo \"Retry detected, passing the step.\"\n  exit 0\nelse\n  echo \".buildkite/steps/brakemans\" \n  sleep 300\nfi\n"
-    agents:
-      hello: "1.9.4"
-    retry:
-      automatic:
-      - exit_status: -1
-        limit: 1
-      - exit_status: 1
-        limit: 1
-      - exit_status: 255
-        limit: 1
-  - label: ":date: Outdated Check"
-    command: echo ".buildkite/steps/outdated" && sleep 180
-    #continue_on_failure: true
+# steps:
+# # - group: ":lock_with_ink_pen: Security Audits"
+# #   key: "audits"
+# #   steps:
+# #   - label: ":brakeman: Brakeman"
+# #     command: "if [[ -n \"$$BUILDKITE_RETRY_COUNT\" && \"$$BUILDKITE_RETRY_COUNT\" -gt 0 ]]; then\n  echo \"Retry detected, passing the step.\"\n  exit 0\nelse\n  echo \".buildkite/steps/brakemans\" \n  sleep 300\nfi\n"
+# #     agents:
+# #       hello: "1.9.4"
+# #     retry:
+# #       automatic:
+# #       - exit_status: -1
+# #         limit: 1
+# #       - exit_status: 1
+# #         limit: 1
+# #       - exit_status: 255
+# #         limit: 1
+# #   - label: ":date: Outdated Check"
+# #     command: echo ".buildkite/steps/outdated" && sleep 180
+# #     #continue_on_failure: true
 
-- group: "Linting"
-  key: "linters"
-  steps:
-  - label: ":lint-roller: Linting task"
-    command: "echo .buildkite/steps/linter"
-  - label: ":lint-roller: Linting code"
-    command: "echo .buildkite/steps/code-linteeeer"
+# # - group: "Linting"
+# #   key: "linters"
+# #   steps:
+# #   - label: ":lint-roller: Linting task"
+# #     command: "echo .buildkite/steps/linter"
+# #   - label: ":lint-roller: Linting code"
+# #     command: "echo .buildkite/steps/code-linteeeer"
+
+
+steps:
+- label: ":pipeline: Check for changes in pipeline1.yml"
+  plugins:
+  - monorepo-diff#v1.0.1:
+      watch:
+      - path: pipeline1.yml
+        config:
+          command: buildkite-agent pipeline upload pipeline1.yml
+
+- label: "No changes detected"
+  command: echo "No changes detected in pipeline1.yml"
+  if: "build.state == 'passed' && !build.meta_data.monorepo-diff-paths-changed"
