@@ -4,6 +4,6 @@ env:
 steps:
 - key: push-run-mock-container
   label: ":docker: push-run-mock-container"
-  command: echo $VARIABLE1
+  command: echo "VARIABLE1"
 
 
