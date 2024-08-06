@@ -57,7 +57,7 @@ steps:
     fi
 
     if [[ "$pipeline2_triggered" == "true" ]]; then
-      echo "pipeline2.yml was triggered"
+      echo "pipeline2.yml was triggered/no diff found"
     else
       echo "pipeline2.yml was not triggered"
     fi
