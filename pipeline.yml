@@ -28,7 +28,7 @@
 
 
 steps:
-- label: ":pipeline: Check for changes in pipeline1.yml"
+- label: ":pipeline: Check for changes in pipeline1.yml or pipeline2.yml"
   plugins:
   - monorepo-diff#v1.0.1:
       watch:
@@ -37,14 +37,31 @@ steps:
           command: |
             buildkite-agent meta-data set "pipeline1_triggered" "true"
             buildkite-agent pipeline upload pipeline1.yml
+      - path: pipeline2.yml
+        config:
+          command: |
+            buildkite-agent meta-data set "pipeline2_triggered" "true"
+            buildkite-agent pipeline upload pipeline2.yml
 
-- label: "Check if pipeline1.yml was triggered"
+- wait
+
+- label: "Check if pipeline1.yml or pipeline2.yml was triggered"
   command: |
-    if [[ "$(buildkite-agent meta-data get 'pipeline1_triggered')" == "true" ]]; then
-      echo "pipeline1.yml was triggered"
+    pipeline1_triggered=$(buildkite-agent meta-data get 'pipeline1_triggered' --default 'false')
+    pipeline2_triggered=$(buildkite-agent meta-data get 'pipeline2_triggered' --default 'false')
 
+    if [[ "$pipeline1_triggered" == "true" ]]; then
+      echo "pipeline1.yml was triggered"
     else
       echo "pipeline1.yml was not triggered"
-
     fi
+
+    if [[ "$pipeline2_triggered" == "true" ]]; then
+      echo "pipeline2.yml was triggered"
+    else
+      echo "pipeline2.yml was not triggered"
+    fi
+
+
+
 
