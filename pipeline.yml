@@ -54,11 +54,11 @@ steps:
     fi
 
 
-label: "tests"
-command: ""
-plugins:
-- github.com/buildkite-plugins/kubernetes-buildkite-plugin:
-    podSpec:
-      containers:
-      - env:
-        - name: "REDEAM_LIB"
+- label: "tests"
+  command: ""
+  plugins:
+  - github.com/buildkite-plugins/kubernetes-buildkite-plugin:
+      podSpec:
+        containers:
+        - env:
+          - name: "REDEAM_LIB"
