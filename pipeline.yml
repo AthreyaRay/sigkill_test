@@ -55,8 +55,6 @@ steps:
 
 
 label: "tests"
-agents:
-  queue: "kubernetes"
 command: ""
 plugins:
 - github.com/buildkite-plugins/kubernetes-buildkite-plugin:
