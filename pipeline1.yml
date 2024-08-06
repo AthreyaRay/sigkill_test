@@ -1,4 +1,4 @@
 steps:
 - key: push-run-mock-container23
   label: ":docker: push-run-mock-container 2 "
-  command: echo "hi"
+  command: echo "hi hello"
