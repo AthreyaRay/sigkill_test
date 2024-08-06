@@ -52,3 +52,15 @@ steps:
     else
       echo "Neither pipeline1.yml nor pipeline2.yml was triggered"
     fi
+
+
+label: "tests"
+agents:
+  queue: "kubernetes"
+command: ""
+plugins:
+- github.com/buildkite-plugins/kubernetes-buildkite-plugin:
+    podSpec:
+      containers:
+      - env:
+        - name: "REDEAM_LIB"
