@@ -1,6 +1,4 @@
-env:
-  VARIABLE1: "true" # !!!! env var on the top level for all jobs !!!!
-  BUILDKITE_AGENT_ACCESS_TOKEN: "random_value"
+
 steps:
 - key: push-run-mock-container
   label: ":docker: push-run-mock-container"
