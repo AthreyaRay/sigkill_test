@@ -57,8 +57,10 @@ steps:
 - label: "tests"
   command: ""
   plugins:
-  - github.com/buildkite-plugins/kubernetes-buildkite-plugin:
+  - kubernetes:
       podSpec:
         containers:
-        - env:
-          - name: "REDEAM_LIB"
+        - image: alpine:latest
+          command:
+          - echo
+          - Hello World!
