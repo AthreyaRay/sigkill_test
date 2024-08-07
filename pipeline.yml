@@ -27,40 +27,38 @@
 # #     command: "echo .buildkite/steps/code-linteeeer"
 
 
+# steps:
+# - label: ":pipeline: Check for changes in pipeline1.yml or pipeline2.yml"
+#   plugins:
+#   - monorepo-diff#v1.0.1:
+#       watch:
+#       - path: pipeline1.yml
+#         config:
+#           command: |
+#             buildkite-agent meta-data set "pipeline1_triggered" "true"
+#             buildkite-agent pipeline upload pipeline1.yml
+#       - path: pipeline2.yml
+#         config:
+#           command: |
+#             buildkite-agent meta-data set "pipeline2_triggered" "true"
+#             buildkite-agent pipeline upload pipeline2.yml
+
+# - wait
+
+# - label: "Check if pipeline1.yml or pipeline2.yml was triggered"
+#   command: |
+#     if [[ "$(buildkite-agent meta-data get 'pipeline1_triggered')" == "true" ]] || [[ "$(buildkite-agent meta-data get 'pipeline2_triggered')" == "true" ]]; then
+#       echo "Either pipeline1.yml or pipeline2.yml was triggered"
+#     else
+#       echo "Neither pipeline1.yml nor pipeline2.yml was triggered"
+#     fi
+
+
+
 steps:
-- label: ":pipeline: Check for changes in pipeline1.yml or pipeline2.yml"
-  plugins:
-  - monorepo-diff#v1.0.1:
-      watch:
-      - path: pipeline1.yml
-        config:
-          command: |
-            buildkite-agent meta-data set "pipeline1_triggered" "true"
-            buildkite-agent pipeline upload pipeline1.yml
-      - path: pipeline2.yml
-        config:
-          command: |
-            buildkite-agent meta-data set "pipeline2_triggered" "true"
-            buildkite-agent pipeline upload pipeline2.yml
-
-- wait
-
-- label: "Check if pipeline1.yml or pipeline2.yml was triggered"
-  command: |
-    if [[ "$(buildkite-agent meta-data get 'pipeline1_triggered')" == "true" ]] || [[ "$(buildkite-agent meta-data get 'pipeline2_triggered')" == "true" ]]; then
-      echo "Either pipeline1.yml or pipeline2.yml was triggered"
-    else
-      echo "Neither pipeline1.yml nor pipeline2.yml was triggered"
-    fi
-
-
-- label: "tests"
-  command: ""
-  plugins:
-  - kubernetes:
-      podSpec:
-        containers:
-        - image: alpine:latest
-          command:
-          - echo
-          - Hello World!
+- key: dd_key_test_one
+  label: step_1
+  command: buildkite-agent meta-data set "dd_tags.key" dd_key_test_one
+- key: dd_key_test_two
+  label: step_2
+  command: buildkite-agent meta-data set "dd_tags.key" dd_key_test_two
