@@ -56,7 +56,7 @@
 
 
 steps:
-- label: "Trigger athreya-test1 pipeline"
+- label: "Trigger athreya-test1 pipeline :pipeline:"
   trigger: "athreya-test1"
   async: false # ensuring the parent pipeline waits for the child to finish (optional)
   build:
