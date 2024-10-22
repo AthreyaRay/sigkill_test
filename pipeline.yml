@@ -56,9 +56,11 @@
 
 
 steps:
-- key: dd_key_test_one
-  label: step_1
-  command: echo "his"
-- key: dd_key_test_two
-  label: step_2
-  command: exit 1
+- label: "Trigger athreya-test1 pipeline"
+  trigger: "athreya-test1"
+  async: false # This ensures the parent pipeline waits for the child to finish (optional)
+  build:
+    message: "Triggered by parent pipeline with commit hash $BUILDKITE_COMMIT"
+    commit: "$BUILDKITE_COMMIT" # Optionally pass the same commit as the parent pipeline
+    env:
+      PARENT_COMMIT_HASH: "$BUILDKITE_COMMIT"
