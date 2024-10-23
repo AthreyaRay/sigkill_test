@@ -58,7 +58,7 @@
 steps:
 - label: "Trigger athreya-test1 pipeline :pipeline:"
   trigger: "athreya-test1"
-  async: false # ensuring the parent parent pipeline waitsssssss for the child to finish and testing it!
+  async: false # ensuring the parent parent pipeline waits for the child to finish and testing it!
   build:
     message: "Triggered by parent PIPELINE with commit hash $BUILDKITE_COMMIT"
     env:
