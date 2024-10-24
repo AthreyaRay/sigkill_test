@@ -70,6 +70,7 @@ steps:
 
 - label: "Trigger athreya-test1 pipeline again :pipeline:"
   trigger: "athreya-test1"
+  depends_on: ~
   async: true # Ensure the parent pipeline waits for the child pipeline to finish
   build:
     message: "Triggered again by parent PIPELINE with commit hash $BUILDKITE_COMMIT"
