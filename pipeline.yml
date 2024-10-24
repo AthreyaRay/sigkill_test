@@ -58,9 +58,20 @@
 steps:
 - label: "Trigger athreya-test1 pipeline :pipeline:"
   trigger: "athreya-test1"
-  async: true # ensuring the parent  pipeline waits for the child to finish and testing it!
+  async: true # Ensure the parent pipeline waits for the child pipeline to finish
   build:
     message: "Triggered by parent PIPELINE with commit hash $BUILDKITE_COMMIT"
     env:
       PARENT_COMMIT_HASH: "$BUILDKITE_COMMIT"
 
+- block: "Waiting for Manual Approval"
+  key: "manual-approval"
+  if: build.state != "passed" # Only block if the build is not passed
+
+- label: "Trigger athreya-test1 pipeline again :pipeline:"
+  trigger: "athreya-test1"
+  async: true # Ensure the parent pipeline waits for the child pipeline to finish
+  build:
+    message: "Triggered again by parent PIPELINE with commit hash $BUILDKITE_COMMIT"
+    env:
+      PARENT_COMMIT_HASH: "$BUILDKITE_COMMIT"
